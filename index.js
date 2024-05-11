@@ -1,14 +1,6 @@
-function lengthOfLIS(nums) {
-  if (nums.length === 0) return 0;
-  const dp = new Array(nums.length).fill(1);
-  let max = 1;
-  for (let i = 1; i < nums.length; i++) {
-    for (let j = 0; j < i; j++) {
-      if (nums[i] > nums[j]) {
-        dp[i] = Math.max(dp[i], dp[j] + 1);
-        max = Math.max(max, dp[i]);
-      }
-    }
-  }
-  return max;
-}
+const flatten = (arr, depth = 1) =>
+  arr.reduce(
+    (a, v) =>
+      a.concat(depth > 1 && Array.isArray(v) ? flatten(v, depth - 1) : v),
+    [],
+  );
